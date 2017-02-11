@@ -1,0 +1,20 @@
+
+To plot lines after every process
+	
+def show_image(loc, title, img):
+    plt.subplot(*loc)
+    plt.title(title)
+    if len(img.shape) == 3:
+        plt.imshow(img)
+    else:
+        plt.imshow(img, cmap='gray')  
+# then within pipeline function....
+# display all initial, intermediate, and final pictures in a grid
+plt.figure(figsize=[16, 5])
+for i, imgname in enumerate(['img', 'white', 'yellow', 'gray', 'edges', 'masked_edges', 'lines', 'combo']):
+    show_image((2, 4, i+1), imgname, eval(imgname))
+
+
+https://peteris.rocks/blog/extrapolate-lines-with-numpy-polyfit/ - To extrapolate lines	
+
+http://stackoverflow.com/questions/29862139/how-to-extrapolate-curves-in-python
