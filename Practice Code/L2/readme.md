@@ -1,0 +1,3 @@
+##Ch 2: Finding Lane Lines##
+
+This practice code directory contains code base, input files as well as output files of chapter 2 of SDC program - Term 1. The code uses python as programming language and openCV3 library for image processing. The idea here is to detect lane lines on the road by using image processing techniques like Canny Edge detection, Gaussian Blur, Region of Interest Mask, Hough Transforms and extrapolation.
