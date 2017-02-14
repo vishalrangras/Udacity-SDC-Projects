@@ -1,0 +1,1 @@
+The backward method sums the derivative (it's a normal derivative when there's only one variable) with respect to the only input over all the output nodes.
