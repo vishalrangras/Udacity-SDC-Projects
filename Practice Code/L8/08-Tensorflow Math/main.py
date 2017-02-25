@@ -19,10 +19,10 @@ with tf.Session() as sess:
 x = 10
 y = 2
 z = x/y - 1
-
-# TODO: Print z from a session
 x = tf.constant(x)
 y = tf.constant(y)
+
+# TODO: Print z from a session
 z = tf.subtract(tf.cast(tf.divide(x,y),tf.int32),tf.constant(1))
 print()
 print("------------Algorithm Solution starts here------------")
