@@ -1,4 +1,4 @@
-#**Traffic Sign Recognition**# 
+# **Traffic Sign Recognition** # 
 
 ---
 
@@ -31,18 +31,18 @@ The goals / steps of this project are the following:
 [image14]: ./notebook_images/LeNet.png "LeNet Model"
 
 ## Rubric Points ##
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
 ---
-###Writeup / README###
+### Writeup / README ###
 
-####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.####
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.####
 
 You're reading it! and here is a link to my [project code](https://github.com/vishalrangras/Udacity-SDC-Projects/blob/master/P2-Traffic-Signal-Classifier/Traffic_Sign_Classifier.ipynb)
 
-###Data Set Summary & Exploration###
+### Data Set Summary & Exploration###
 
-####1. Provide a basic summary of the data set and identify where in your code the summary was done. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.####
+#### 1. Provide a basic summary of the data set and identify where in your code the summary was done. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.####
 
 The code for this step is contained in the second code cell "In[3]" of the IPython notebook.  
 
@@ -53,7 +53,7 @@ I loaded the dataset using pickle load() function. Then training, validation and
 * The shape of a traffic sign image is (32, 32, 3)
 * The number of unique classes/labels in the data set is 43
 
-####2. Include an exploratory visualization of the dataset and identify where the code is in your code file. ####
+#### 2. Include an exploratory visualization of the dataset and identify where the code is in your code file. ####
 
 The code for this step is contained in the third code cell "In[4]" of the IPython notebook.  
 
@@ -61,9 +61,9 @@ To visualize the data, I first printed the CSV file which gave me idea about whi
 
 ![alt text][image1]
 
-###Design and Test a Model Architecture ###
+### Design and Test a Model Architecture ###
 
-####1. Describe how, and identify where in your code, you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. ####
+#### 1. Describe how, and identify where in your code, you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. ####
 
 The code for this step is contained in the fifth and sixth code cell "In[6]" and In[9] of the IPython notebook.
 In pre-processing section itself, I grayscaled images by passing image data to np.sum() function and dividing by 3. This in turn resulted into combining all the 3 channels of images into 1 channel. I could have also used cv2.imread with parameter 0 next to filename to load grayscale images but I wanted to try with a simply approach so I went with numpy method. During the lectures as well as on P2 slack channel, various methods for data standardization, normalization and augmentation were discussed but I wanted to keep it simple due to lack of time, so I just used grayscaling, shuffling and random seed as part of data pre-processing.
@@ -72,7 +72,7 @@ Here is an example of a traffic sign image before and after pre-processing.
 
 ![alt text][image2]
 
-####2. Describe how, and identify where in your code, you set up training, validation and testing data. How much data was in each set? Explain what techniques were used to split the data into these sets. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, identify where in your code, and provide example images of the additional data) ####
+#### 2. Describe how, and identify where in your code, you set up training, validation and testing data. How much data was in each set? Explain what techniques were used to split the data into these sets. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, identify where in your code, and provide example images of the additional data) ####
 
 The code for splitting the data into training and validation sets is contained in the fourth code cell "In[5]" of the IPython notebook.  
 
@@ -82,7 +82,7 @@ I split training data into training set and validation set using sklearn's train
 
 My final training set had 27839 number of images. My validation set and test set had 6960 and 12630 number of images.
 
-####3. Describe, and identify where in your code, what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model. ####
+#### 3. Describe, and identify where in your code, what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model. ####
 
 The code for my final model is located in the eighth and ninth cell "In[11]" and "In[12]" of the ipython notebook. 
 
@@ -122,14 +122,14 @@ The LeNet architecture accepts a 32x32xC image as input, where C is the number o
 ### Output ###
 Return the result of the 2nd fully connected layer in form of Logits. This Layer is Layer 5 in the above architecture.
 
-####4. Describe how, and identify where in your code, you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate. ####
+#### 4. Describe how, and identify where in your code, you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate. ####
 
 The code for training the model is located in the tenth and eleventh cell "In[29]" and "In[30]" of the ipython notebook. 
 
 My model used LeNet architecture as-is where I just modified output dimensions to predict for 43 classes instead of 10.
 I used batch size of 128 as it was working fine and I didn't find the need to modify it. I trained the model on different epochs and learning rates which I have explained in below point #5. I used AdamOptimizer as-is which has the benefits of moving averages of parameters (momentum) and converges quickly without hyper-parameter tuning requirements. The learning rate was tried with different values as in this order: 0.001, 0.009, 0.007, 0.005, 0.003, 0.001. As I was getting desired results at 0.001 as well, I kept it to this rate for my final model evaluation. Higher learning rate of 0.009 was having little oscillations but it variation in accuracy was negligible in my case so it didn't bothered much. Ultimately, I reverted back to the best working one which was 0.001.
 
-####5. Describe the approach taken for finding a solution. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem. ####
+#### 5. Describe the approach taken for finding a solution. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem. ####
 
 The code for calculating the accuracy of the model is located in the twelfth cell "In[31]" of the Ipython notebook.
 
@@ -150,22 +150,41 @@ When I tried this LeNet model on Internet images, it gave me 70% accuracy so lit
 
 I also tried to apply Modified Lenet Architecture for Traffic Signal Classifier based on the paper Traffic Sign Recognition with Multi-Scale Convolutional Networks but my implementation for that model resulted into a very low validation accuracy of 0.65 and as a result I had to drop it for the time being. In the upcoming time, I intend to work on that model more and improve accuracy, but I do not want to include it as a part of submission as of now. This is just an FYI.
 
-###Test a Model on New Images ###
+### Test a Model on New Images ###
 
-####1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify. ####
+#### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify. ####
 
 Here are ten German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] ![alt text][image7] ![alt text][image8]
-![alt text][image9] ![alt text][image10] ![alt text][image11] ![alt text][image12] ![alt text][image13]
+![alt text][image4] 
+
+![alt text][image5] 
+
+![alt text][image6] 
+
+![alt text][image7] 
+
+![alt text][image8]
+
+![alt text][image9] 
+
+![alt text][image10] 
+
+![alt text][image11] 
+
+![alt text][image12] 
+
+![alt text][image13]
 
 The images are having different sizes, angle orientation and luminious intensity which should be the good enough candidate for the model to try and predict based on its learning. I believe as the images are of different dimensions, scaling them or cropping them will have impact on prediction. Also, the images which are not clear in terms of luminous intensity or having not direct camera angle should be difficult. There is one image of slippery road which is covered with snow. I believe, model should not be able to predict this image due to presence of snow.
 
 After resizing and pre-processing the internet images, the internet images appears as below:
 
+
 ![alt text][image3]
 
-####2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. Identify where in your code predictions were made. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric). ####
+
+#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. Identify where in your code predictions were made. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric). ####
 
 The code for making predictions on my final model is located in the sixteenth, seventeenth and eighteenth cell "In[48]", "In[49]", "In[52]" of the Ipython notebook.
 
@@ -190,61 +209,71 @@ Predicted Labels = [23, 34,  6,  5,  5,  25, 23,  3,  1, 18]
 
 The model was able to correctly guess 7 of the 10 traffic signs, which gives an accuracy of 70%. This accuracy is less compared to the test set accuracy of 0.885. The three images which model was not able to classify correctly were all having very similar characteristics that they were almost round in shape with red colored background and speed limit written in the middle or Stop sign.
 
-####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction and identify where in your code softmax probabilities were outputted. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)####
+#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction and identify where in your code softmax probabilities were outputted. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)####
 
 The code for making predictions on my final model is located in the nineteenth cell "In[53]" of the Ipython notebook.
 
 Here are the values of probabilities and image id along with each image:
 
 ![alt text][image4] 
+
 Probabilities = [ 0.40267757  0.15005061  0.14909063  0.14909063  0.14909063]
 Predicted Labels = [23, 19, 11, 34, 21]
 
 The model predicts 0.4 probability for Slippery road which is the correct prediction. The other close predictions are : Dangerous curve to the left, Right-of-way at the next intersection, Turn left ahead and Double curve.
 
 ![alt text][image5] 
+
 Probabilities = [ 0.40460971  0.14884759  0.14884759  0.14884759  0.14884759]
 Predicted Labels = [34, 23, 17, 36, 38]
 
 The model predicts 0.4 probability of Turn left ahead which is the correct prediction. Other close predictions are: Slippery road, No entry, Go straight or right and Keep right.
 
 ![alt text][image6] 
+
 Probabilities = [ 0.30889761  0.21843128  0.15756191  0.1575551   0.15755409]
 Predicted Labels = [ 6, 41,  1,  2,  8]
 
 The model predicts 0.3 probability of End of speed limit (80km/h). Model is predicting wrong and the correct answer is speed limit of (50km/h). I believe due to round red coloured sign board, the model is not able to make correct predictions. Data augmentation can improve this.
 
 ![alt text][image7] 
+
 Probabilities = [ 0.40442264  0.14896369  0.14887123  0.1488712   0.14887121]
 Predicted Labels = [ 5,  6, 36,  1,  4]
 The model predicts 0.4 probability of Speed limit (80km/h), which is also again wrong because this image is also of speed limit of (50km/h).
 
 ![alt text][image8]
+
 Probabilities = [ 0.39317906  0.15471518  0.15154389  0.15028842  0.1502735 ]
 Predicted Labels = [ 5, 40,  4, 11,  1]
 The model predicts 0.3 probability of Speed limit (80km/h), which is also again wrong because this image is of Stop sign.
 
 ![alt text][image9] 
+
 Probabilities = [ 0.40460971  0.14884759  0.14884759  0.14884759  0.14884759]
 Predicted Labels = [25, 31, 23, 37, 17]
 0.4 probability prediction for Road work sign which is a correct prediction.
 
 ![alt text][image10]
+
 Probabilities = [ 0.40460971  0.14884759  0.14884759  0.14884759  0.14884759]
 Predicted Labels = [23, 29, 21, 19, 36]
 0.4 probability prediction of Slippery road which is also correct prediction.
 
 ![alt text][image11] 
+
 Probabilities = [ 0.40460438  0.14885083  0.1488483   0.14884827  0.14884825]
 Predicted Labels = [ 3, 31,  1,  6,  5]
 0.3 probability prediction for speed limit of 60 km/hr which is a correct prediction.
 
 ![alt text][image12] 
+
 Probabilities = [ 0.40460971  0.14884759  0.14884759  0.14884759  0.14884759]
 Predicted Labels = [ 1,  2,  5,  0,  3]
 0.4 probability prediction of Speed Limit 30 km/hr which is a correct prediction.
 
 ![alt text][image13]
+
 Probabilities = [ 0.40460971  0.14884759  0.14884759  0.14884759  0.14884759]
 Predicted Labels = [18, 27, 26, 21,  0]
 0.4 probability prediction of General caution which again is the correct prediction.
