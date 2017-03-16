@@ -36,13 +36,13 @@ The goals / steps of this project are the following:
 ---
 ### Writeup / README ###
 
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.####
+#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code. ####
 
 You're reading it! and here is a link to my [project code](https://github.com/vishalrangras/Udacity-SDC-Projects/blob/master/P2-Traffic-Signal-Classifier/Traffic_Sign_Classifier.ipynb)
 
-### Data Set Summary & Exploration###
+### Data Set Summary & Exploration ###
 
-#### 1. Provide a basic summary of the data set and identify where in your code the summary was done. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.####
+#### 1. Provide a basic summary of the data set and identify where in your code the summary was done. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually. ####
 
 The code for this step is contained in the second code cell "In[3]" of the IPython notebook.  
 
@@ -209,7 +209,7 @@ Predicted Labels = [23, 34,  6,  5,  5,  25, 23,  3,  1, 18]
 
 The model was able to correctly guess 7 of the 10 traffic signs, which gives an accuracy of 70%. This accuracy is less compared to the test set accuracy of 0.885. The three images which model was not able to classify correctly were all having very similar characteristics that they were almost round in shape with red colored background and speed limit written in the middle or Stop sign.
 
-#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction and identify where in your code softmax probabilities were outputted. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)####
+#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction and identify where in your code softmax probabilities were outputted. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts) ####
 
 The code for making predictions on my final model is located in the nineteenth cell "In[53]" of the Ipython notebook.
 
@@ -218,6 +218,7 @@ Here are the values of probabilities and image id along with each image:
 ![alt text][image4] 
 
 Probabilities = [ 0.40267757  0.15005061  0.14909063  0.14909063  0.14909063]
+
 Predicted Labels = [23, 19, 11, 34, 21]
 
 The model predicts 0.4 probability for Slippery road which is the correct prediction. The other close predictions are : Dangerous curve to the left, Right-of-way at the next intersection, Turn left ahead and Double curve.
@@ -225,6 +226,7 @@ The model predicts 0.4 probability for Slippery road which is the correct predic
 ![alt text][image5] 
 
 Probabilities = [ 0.40460971  0.14884759  0.14884759  0.14884759  0.14884759]
+
 Predicted Labels = [34, 23, 17, 36, 38]
 
 The model predicts 0.4 probability of Turn left ahead which is the correct prediction. Other close predictions are: Slippery road, No entry, Go straight or right and Keep right.
@@ -232,6 +234,7 @@ The model predicts 0.4 probability of Turn left ahead which is the correct predi
 ![alt text][image6] 
 
 Probabilities = [ 0.30889761  0.21843128  0.15756191  0.1575551   0.15755409]
+
 Predicted Labels = [ 6, 41,  1,  2,  8]
 
 The model predicts 0.3 probability of End of speed limit (80km/h). Model is predicting wrong and the correct answer is speed limit of (50km/h). I believe due to round red coloured sign board, the model is not able to make correct predictions. Data augmentation can improve this.
@@ -239,41 +242,48 @@ The model predicts 0.3 probability of End of speed limit (80km/h). Model is pred
 ![alt text][image7] 
 
 Probabilities = [ 0.40442264  0.14896369  0.14887123  0.1488712   0.14887121]
+
 Predicted Labels = [ 5,  6, 36,  1,  4]
 The model predicts 0.4 probability of Speed limit (80km/h), which is also again wrong because this image is also of speed limit of (50km/h).
 
 ![alt text][image8]
 
 Probabilities = [ 0.39317906  0.15471518  0.15154389  0.15028842  0.1502735 ]
+
 Predicted Labels = [ 5, 40,  4, 11,  1]
 The model predicts 0.3 probability of Speed limit (80km/h), which is also again wrong because this image is of Stop sign.
 
 ![alt text][image9] 
 
 Probabilities = [ 0.40460971  0.14884759  0.14884759  0.14884759  0.14884759]
+
 Predicted Labels = [25, 31, 23, 37, 17]
 0.4 probability prediction for Road work sign which is a correct prediction.
 
 ![alt text][image10]
 
 Probabilities = [ 0.40460971  0.14884759  0.14884759  0.14884759  0.14884759]
+
 Predicted Labels = [23, 29, 21, 19, 36]
 0.4 probability prediction of Slippery road which is also correct prediction.
 
 ![alt text][image11] 
 
 Probabilities = [ 0.40460438  0.14885083  0.1488483   0.14884827  0.14884825]
+
 Predicted Labels = [ 3, 31,  1,  6,  5]
 0.3 probability prediction for speed limit of 60 km/hr which is a correct prediction.
 
 ![alt text][image12] 
 
 Probabilities = [ 0.40460971  0.14884759  0.14884759  0.14884759  0.14884759]
+
 Predicted Labels = [ 1,  2,  5,  0,  3]
 0.4 probability prediction of Speed Limit 30 km/hr which is a correct prediction.
 
 ![alt text][image13]
 
 Probabilities = [ 0.40460971  0.14884759  0.14884759  0.14884759  0.14884759]
+
 Predicted Labels = [18, 27, 26, 21,  0]
 0.4 probability prediction of General caution which again is the correct prediction.
