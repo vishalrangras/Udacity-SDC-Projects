@@ -72,15 +72,11 @@ Keras class Cropping2D was also used to remove top 70 and bottom 25 pixels from 
 
 In order to avoid overfitting, I augmented the data as per the recommendations provided in the classroom videos. I used images from all the 3 cameras i.e. Left, Center and Right (Line no 29 to 39 in model.py).  I used a correction factor of 0.2 (line 20) for Left and Right Image and their steering angle measurement. And then all of this data was flipped horizontally in order to augment data (Line 43 to 48). As a result my total data size becomes len(train_samples)*2*3 = 38568 images. Following images illustrates five different types of images:
 
-![alt text][image1]
+#### Normal and Flipped Image
+![alt text][image1] ![alt text][image2]
 
-![alt text][image2]
-
-![alt text][image3]
-
-![alt text][image4]
-
-![alt text][image5]
+#### Left, Centre and Right Camera Image
+![alt text][image3] ![alt text][image4] ![alt text][image5]
 
 I used sklearn.utils.shuffle() for randomization of training data, and sklearn.model_selection.train_test_split() to create Validation data from training data with the test_size of 0.2 (line 16). These methods were already used in P2 and were also discussed in classroom of P3 in accordance with generator function which became very helpful.
 
@@ -105,7 +101,9 @@ I then kept the all the pre-processing techniques as it is but only changed the 
 #### 2. Final Model Architecture
 
 As I mentioned earlier, my final model uses Nvidia Model Architecture. Original Nvidia Model Architecture consists of 5 Convolutional layers in the following order: 24@31x98, 36@14x47, 48@5x22, 64@3x20, 64@1x18. Then it has a flatten layer followed by 3 fully connected layers outputting 100 neurons, 50 neurons and 10 neurons. Below I have provided an image of this model from their paper: "End to End Learning for Self-Driving Cars"
-
+<p align="center">
+#### Nvidia Model Architecture
+</p>
 ![alt text][image8]
 
 I had to alter this model in a way that I had to remove the last convolution layer of filter size = 64 and kernal size = 3. I had to remove this layer because my model was throwing an exception of negative dimensions at this layer. I believe this could have occurred because of valid padding and the dimensions of the input to this layer would have reduced so significantly that it was not receiving expected image dimensions. 
@@ -114,8 +112,10 @@ A better way to resolve this would be to analyse the root cause and if it is wha
 
 #### 3. Creation of the Training Set & Training Process
 
+#### Training and Validation log
 ![alt text][image6]
 
+#### MSE vs Epoch
 ![alt text][image7]
 
 Like I mentioned above, I tried to record the training lap but due to limitation of hardware resources at my end, I could not do it so I used the data provided by Udacity. I trained mainly two models with that data: Lenet and Nvidia model. Just for fun, I followed all the ways explained in the classroom sessions and then picked the best out of all those.
