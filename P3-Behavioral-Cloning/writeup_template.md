@@ -79,19 +79,14 @@ Normal and Flipped Image
 ![alt text][image1] ![alt text][image2]
 
 <h4 align="center">
-Camera Images
+Left, Centre and Right Camera Images
 <h4>
+
+![alt text][image3]
 
 ![alt text][image4]
 
-<h6 align="center">
-Centre Camera
-<h6>
-
-![alt text][image3] ![alt text][image5]
-<h6 align="center">
-Left and Right Camera
-<h6>
+![alt text][image5]
 
 I used sklearn.utils.shuffle() for randomization of training data, and sklearn.model_selection.train_test_split() to create Validation data from training data with the test_size of 0.2 (line 16). These methods were already used in P2 and were also discussed in classroom of P3 in accordance with generator function which became very helpful.
 
