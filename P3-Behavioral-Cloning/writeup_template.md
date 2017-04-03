@@ -101,9 +101,11 @@ I then kept the all the pre-processing techniques as it is but only changed the 
 #### 2. Final Model Architecture
 
 As I mentioned earlier, my final model uses Nvidia Model Architecture. Original Nvidia Model Architecture consists of 5 Convolutional layers in the following order: 24@31x98, 36@14x47, 48@5x22, 64@3x20, 64@1x18. Then it has a flatten layer followed by 3 fully connected layers outputting 100 neurons, 50 neurons and 10 neurons. Below I have provided an image of this model from their paper: "End to End Learning for Self-Driving Cars"
-<p align="center">
+
+<div align="center">
 #### Nvidia Model Architecture
-</p>
+</div>
+
 ![alt text][image8]
 
 I had to alter this model in a way that I had to remove the last convolution layer of filter size = 64 and kernal size = 3. I had to remove this layer because my model was throwing an exception of negative dimensions at this layer. I believe this could have occurred because of valid padding and the dimensions of the input to this layer would have reduced so significantly that it was not receiving expected image dimensions. 
